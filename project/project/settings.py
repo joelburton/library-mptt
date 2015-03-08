@@ -4,7 +4,7 @@ SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_DIR = os.path.abspath(SETTINGS_DIR + "/..")
 GIT_DIR = os.path.abspath(PROJECT_DIR + "/..")
 
-SECRET_KEY = '*6!_s1c4&p5*#d%y)11jyvs#%4*2%_5a7rv7v2fyp63n3db002'
+SECRET_KEY = os.environ.get('SECRET_KEY', '*6!_s1c4&p5*#d%y)11jyvs#%4*2%_5a7rv7v2fyp63n3db002')
 DEBUG = True
 ALLOWED_HOSTS = []
 

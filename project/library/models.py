@@ -5,7 +5,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Folder(MPTTModel):
-    """Folder in library. Acts like a topic. Can be nested and each level can contain documents."""
+    """Library folder (topic). Can be nested and each level can contain documents."""
+
     slug = models.SlugField(
         max_length=50,
     )
