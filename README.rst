@@ -1,8 +1,7 @@
 Library-MPTT
 ============
 
-.. image:: docs/document.jpg
-  :width: 450px
+.. image:: docs/document.gif
 
 A proof-of-concept Django app that creates a library of folders and files, where the folders
 can be arbitrarily nested, and files can live at any level in the folders.
