@@ -8,5 +8,5 @@ urlpatterns = [
 
     # THis should come last, as it captures everything else. It's used to traverse into the
     # library using the paths of folder/documents.
-    url(r'^(?P<path>.+)$', views.library_traverse),
+    url(r'^(?P<path>.+)/$', views.library_traverse),
 ]

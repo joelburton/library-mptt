@@ -42,7 +42,6 @@ def library_traverse(request, path):
     like 'folder-a/folder-b' into the end folder-view.
     """
 
-    path = path.strip('/')
     try:
         folder = Folder.objects.get(path=path)
         return folder_detail_view(request, pk=folder.id)
