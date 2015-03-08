@@ -6,7 +6,7 @@ Library-MPTT
 A proof-of-concept Django app that creates a library of folders and files, where the folders
 can be arbitrarily nested, and files can live at any level in the folders.
 
-It uses pretty slug-urls, like
+It uses pretty slug-urls, like::
 
    /library/folder-a/folder-b/
    /library/folder-a/folder-b/document-1/
