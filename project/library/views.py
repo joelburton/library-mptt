@@ -5,14 +5,23 @@ from .models import Folder, Document
 
 
 class FolderListView(generic.ListView):
+    """View of library."""
+
     model = Folder
 
 
 class FolderDetailView(generic.DetailView):
+    """View of an individual folder."""
+
     model = Folder
+
+# pre-generate this so we can use it in library_traverse
+folder_detail_view = FolderDetailView.as_view()
 
 
 class DocumentDetailView(generic.DetailView):
+    """View of an individual document."""
+
     model = Document
 
     def get_context_data(self, **kwargs):
@@ -22,19 +31,22 @@ class DocumentDetailView(generic.DetailView):
         context['folder'] = self.object.folder
         return context
 
+# pre-generate this so we can use it in library_traverse
+document_detail_view = DocumentDetailView.as_view()
+
 
 def library_traverse(request, path):
-    elems = path.strip('/').split('/')
-    first, rest = elems[0], elems[1:]
-    child = get_object_or_404(Folder, slug=first)
-    for elem in rest:
-        try:
-            child = Folder.objects.get(slug=elem, parent=child)
-        except Folder.DoesNotExist:
-            doc = get_object_or_404(Document, slug=elem, folder=child)
-            return document_detail_view(request, pk=doc.id)
+    """View that traverses to correct folder/document.
 
-    return folder_detail_view(request, pk=child.id)
+    This view turns a path like 'folder-a/folder-b/document' into the end document-view, and a path
+    like 'folder-a/folder-b' into the end folder-view.
+    """
 
-folder_detail_view = FolderDetailView.as_view()
-document_detail_view = DocumentDetailView.as_view()
+    path = path.strip('/')
+    try:
+        folder = Folder.objects.get(path=path)
+        return folder_detail_view(request, pk=folder.id)
+    except Folder.DoesNotExist:
+        doc = get_object_or_404(Document, path=path)
+        return document_detail_view(request, pk=doc.id)
+

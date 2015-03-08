@@ -3,7 +3,19 @@
 
 {% block bootstrap3_title %}{% block title %}{% endblock %}{% endblock %}
 
-{% block bootstrap3_extra_head %}{% block extra_head %}{% endblock %}{% endblock %}
+{% block bootstrap3_extra_head %}
+    <style>
+    .drilldown > ul.drilldown-list {
+      padding: 0;
+    }
+
+    ul.drilldown-list {
+      list-style-type: none;
+      padding: 0.2em 0 0.2em 2em;
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+{% endblock %}
 
 {% block bootstrap3_content %}
   <div class="container">

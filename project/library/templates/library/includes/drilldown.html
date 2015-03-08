@@ -7,7 +7,7 @@
       <ul class="drilldown-list">
       <li>{% else %}</li>
       <li>{% endif %}
-  {% ifequal node folder %}
+  {% ifequal node object %}
     <strong class="drilldown-current">{{ node.title }}</strong>
   {% else %}
     <a href="{{ node.get_absolute_url }}">{{ node.title }}</a>

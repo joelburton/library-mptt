@@ -3,25 +3,12 @@
 
 {% block title %}{{ folder.title }}{% endblock %}
 
-{% block extra_head %}
-  <style>
-    .drilldown > ul.drilldown-list {
-      padding: 0;
-    }
-
-    ul.drilldown-list {
-      list-style-type: none;
-      padding: 0.2em 0 0.2em 2em;
-    }
-  </style>
-{% endblock %}
-
-
 {% block content %}
   {% include 'library/includes/breadcrumbs.html' %}
   {% include 'library/includes/drilldown.html' %}
 
   <h1>{{ folder.title }}</h1>
+  <p>{% lorem 5 %}</p>
 
   {% with subfolders=folder.get_children %}
     {% if subfolders %}

@@ -5,6 +5,14 @@ from mptt.admin import MPTTModelAdmin
 from .models import Folder, Document
 
 
-admin.site.register(Folder, MPTTModelAdmin)
+@admin.register(Folder)
+class FolderAdmin(MPTTModelAdmin):
+    exclude = ['path']
+    prepopulated_fields = {"slug": ("title",)}
+    mptt_level_indent = 20
 
-admin.site.register(Document, ModelAdmin)
+
+@admin.register(Document)
+class DocumentAdmin(ModelAdmin):
+    exclude = ['path']
+    prepopulated_fields = {"slug": ("title",)}
