@@ -29,6 +29,8 @@ class Folder(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['title']
+
+    class Meta:
         unique_together = [['slug', 'parent'], ['title', 'parent']]
 
     def __str__(self):
