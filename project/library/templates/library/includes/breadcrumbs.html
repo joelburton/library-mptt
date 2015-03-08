@@ -1,0 +1,10 @@
+<ol class="breadcrumb">
+  <li><a href="{% url 'folder_list' %}">Library</a></li>
+  {% for parent in folder.get_ancestors %}
+    <li><a href="{{ parent.get_absolute_url }}">{{ parent.title }}</a></li>
+  {% endfor %}
+  <li><b>{{ folder.title }}</b></li>
+  {% if not object.tree_id %}
+    <li><b>{{ object.title }}</b></li>
+  {% endif %}
+</ol>
