@@ -1,0 +1,168 @@
+[
+{
+  "fields": {
+    "rght": 10,
+    "parent": null,
+    "title": "Python",
+    "level": 0,
+    "lft": 1,
+    "tree_id": 2,
+    "path": "/python",
+    "slug": "python"
+  },
+  "model": "library.folder",
+  "pk": 1
+},
+{
+  "fields": {
+    "rght": 8,
+    "parent": null,
+    "title": "Javascript",
+    "level": 0,
+    "lft": 1,
+    "tree_id": 1,
+    "path": "/javascript",
+    "slug": "javascript"
+  },
+  "model": "library.folder",
+  "pk": 2
+},
+{
+  "fields": {
+    "rght": 7,
+    "parent": 2,
+    "title": "jQuery",
+    "level": 1,
+    "lft": 6,
+    "tree_id": 1,
+    "path": "javascript/jquery",
+    "slug": "jquery"
+  },
+  "model": "library.folder",
+  "pk": 3
+},
+{
+  "fields": {
+    "rght": 5,
+    "parent": 2,
+    "title": "Angular",
+    "level": 1,
+    "lft": 2,
+    "tree_id": 1,
+    "path": "javascript/angular",
+    "slug": "angular"
+  },
+  "model": "library.folder",
+  "pk": 4
+},
+{
+  "fields": {
+    "rght": 4,
+    "parent": 4,
+    "title": "Routing",
+    "level": 2,
+    "lft": 3,
+    "tree_id": 1,
+    "path": "javascript/angular/routing",
+    "slug": "routing"
+  },
+  "model": "library.folder",
+  "pk": 5
+},
+{
+  "fields": {
+    "rght": 9,
+    "parent": 1,
+    "title": "Standard Library",
+    "level": 1,
+    "lft": 2,
+    "tree_id": 2,
+    "path": "python/standard-library",
+    "slug": "standard-library"
+  },
+  "model": "library.folder",
+  "pk": 6
+},
+{
+  "fields": {
+    "rght": 8,
+    "parent": 6,
+    "title": "Random",
+    "level": 2,
+    "lft": 5,
+    "tree_id": 2,
+    "path": "python/standard-library/random",
+    "slug": "random"
+  },
+  "model": "library.folder",
+  "pk": 7
+},
+{
+  "fields": {
+    "rght": 4,
+    "parent": 6,
+    "title": "Functools",
+    "level": 2,
+    "lft": 3,
+    "tree_id": 2,
+    "path": "python/standard-library/functools",
+    "slug": "functools"
+  },
+  "model": "library.folder",
+  "pk": 8
+},
+{
+  "fields": {
+    "rght": 7,
+    "parent": 7,
+    "title": "Choice",
+    "level": 3,
+    "lft": 6,
+    "tree_id": 2,
+    "path": "python/standard-library/random/choice",
+    "slug": "choice"
+  },
+  "model": "library.folder",
+  "pk": 9
+},
+{
+  "fields": {
+    "path": "/javascript/overview",
+    "folder": 2,
+    "slug": "overview",
+    "title": "Overview"
+  },
+  "model": "library.document",
+  "pk": 1
+},
+{
+  "fields": {
+    "path": "/python/overview",
+    "folder": 1,
+    "slug": "overview",
+    "title": "Overview"
+  },
+  "model": "library.document",
+  "pk": 2
+},
+{
+  "fields": {
+    "path": "python/standard-library/random/choice/using-choice",
+    "folder": 9,
+    "slug": "using-choice",
+    "title": "Using Choice"
+  },
+  "model": "library.document",
+  "pk": 3
+},
+{
+  "fields": {
+    "path": "python/standard-library/functools/tutorial",
+    "folder": 8,
+    "slug": "tutorial",
+    "title": "Tutorial"
+  },
+  "model": "library.document",
+  "pk": 4
+}
+]

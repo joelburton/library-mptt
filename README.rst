@@ -18,3 +18,17 @@ It uses django-mptt for efficient tree handling.
 
 It was tested with Django 1.8b1 but should work with any moderately recent Django release.
 
+Testing
+-------
+
+The demo requires PostgreSQL (the general product should be compatible with any Django DB).
+
+To test::
+
+  virtualenv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
+
+  createdb mptt
+  python project/manage.py migrate
+  python project/manage.py loaddata sample
