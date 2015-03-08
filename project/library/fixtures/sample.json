@@ -7,7 +7,7 @@
     "level": 0,
     "lft": 1,
     "tree_id": 2,
-    "path": "/python",
+    "path": "python",
     "slug": "python"
   },
   "model": "library.folder",
@@ -21,7 +21,7 @@
     "level": 0,
     "lft": 1,
     "tree_id": 1,
-    "path": "/javascript",
+    "path": "javascript",
     "slug": "javascript"
   },
   "model": "library.folder",
@@ -127,7 +127,7 @@
 },
 {
   "fields": {
-    "path": "/javascript/overview",
+    "path": "javascript/overview",
     "folder": 2,
     "slug": "overview",
     "title": "Overview"
@@ -137,7 +137,7 @@
 },
 {
   "fields": {
-    "path": "/python/overview",
+    "path": "python/overview",
     "folder": 1,
     "slug": "overview",
     "title": "Overview"
@@ -164,5 +164,15 @@
   },
   "model": "library.document",
   "pk": 4
+},
+{
+  "fields": {
+    "path": "javascript/angular/routing/routing-example",
+    "folder": 5,
+    "slug": "routing-example",
+    "title": "Routing Example"
+  },
+  "model": "library.document",
+  "pk": 5
 }
 ]

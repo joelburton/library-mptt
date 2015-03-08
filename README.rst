@@ -18,12 +18,12 @@ It uses django-mptt for efficient tree handling.
 
 It was tested with Django 1.8b1 but should work with any moderately recent Django release.
 
-Testing
--------
+Set Up
+------
 
 The demo requires PostgreSQL (the general product should be compatible with any Django DB).
 
-To test::
+To set up::
 
   virtualenv venv
   source venv/bin/activate
@@ -37,4 +37,12 @@ You can then start the server::
 
   python project/manage.py runserver
 
-And visit http://localhost:8000/library/ to test it out.
+And visit http://localhost:8000/library/ to play with it.
+
+Testing
+-------
+
+Testing is awesome, and this project has tests::
+
+  python project/manage.py test library
+
