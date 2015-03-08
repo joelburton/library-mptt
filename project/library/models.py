@@ -29,6 +29,7 @@ class Folder(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['title']
+        unique_together = [['slug', 'parent'], ['title', 'parent']]
 
     def __str__(self):
         return self.title
@@ -41,14 +42,17 @@ class Folder(MPTTModel):
     def save(self, *args, **kwargs):
         """Save, updating slugs of our descendant folders and documents."""
 
-        new_path = "/".join(a.slug for a in self.get_ancestors()) + "/" + self.slug
+        update_descendants = False
+        add_path_after_save = False
 
-        if self.path != new_path:
-            # our slug must have changed
-            self.path = new_path
-            update_descendants = True
+        if self.pk:
+            new_path = "/".join(a.slug for a in self.get_ancestors()) + "/" + self.slug
+            if self.path != new_path:
+                # our slug must have changed
+                self.path = new_path
+                update_descendants = True
         else:
-            update_descendants = False
+            add_path_after_save = True
 
         super(Folder, self).save(*args, **kwargs)
 
@@ -59,6 +63,12 @@ class Folder(MPTTModel):
                 for d in i.documents.all():
                     d.path = i.path + "/" + d.slug
                     d.save(update_fields=['path'])
+
+        if add_path_after_save:
+            # We were being added for first time, so we can only get our ancenstors after
+            # we're saved. Now we can add our path.
+            self.path = "/".join(a.slug for a in self.get_ancestors()) + "/" + self.slug
+            super(Folder, self).save(*args, **kwargs)
 
 
 class Document(Model):
@@ -81,6 +91,9 @@ class Document(Model):
     path = models.CharField(
         max_length=254,
     )
+
+    class Meta:
+        unique_together = [['slug', 'folder'], ['title', 'folder']]
 
     def __str__(self):
         return self.title
