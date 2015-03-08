@@ -3,3 +3,4 @@ django-admin-bootstrapped
 django-bootstrap3
 django-mptt
 django-debug-toolbar
+psycopg2
