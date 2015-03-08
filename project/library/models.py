@@ -42,32 +42,46 @@ class Folder(MPTTModel):
     def save(self, *args, **kwargs):
         """Save, updating slugs of our descendant folders and documents."""
 
+        def _get_path(obj):
+            """Returns path to folder from top of library, eg 'folder-a/folder-b/folder-c'."""
+            return ("/".join(a.slug for a in obj.get_ancestors()) + "/" + obj.slug).strip('/')
+
         update_descendants = False
         add_path_after_save = False
 
         if self.pk:
-            new_path = "/".join(a.slug for a in self.get_ancestors()) + "/" + self.slug
+            # since we already exist, find out if out path changed
+            new_path = _get_path(self)
             if self.path != new_path:
-                # our slug must have changed
+                # our path changed, so save the new path, and we'll fix descendants after our save
                 self.path = new_path
                 update_descendants = True
         else:
+            # we're not in database, so save, then fix up the path
             add_path_after_save = True
 
         super(Folder, self).save(*args, **kwargs)
 
         if update_descendants:
-            for i in self.get_descendants():
-                i.path = "/".join(a.slug for a in self.get_ancestors(include_self=True))
-                i.save(update_fields=['path'])
-                for d in i.documents.all():
-                    d.path = i.path + "/" + d.slug
-                    d.save(update_fields=['path'])
+            # our path changed, so the paths of all the folders/documents under us must change
+
+            # update our documents:
+            for doc in self.documents.all():
+                doc.path = self.path + "/" + doc.slug
+                doc.save(update_fields=['path'])
+
+            # update our descendants (& their documents)
+            for subfolder in self.get_descendants():
+                subfolder.path = _get_path(subfolder)
+                subfolder.save(update_fields=['path'])
+                for doc in subfolder.documents.all():
+                    doc.path = subfolder.path + "/" + doc.slug
+                    doc.save(update_fields=['path'])
 
         if add_path_after_save:
             # We were being added for first time, so we can only get our ancenstors after
             # we're saved. Now we can add our path.
-            self.path = "/".join(a.slug for a in self.get_ancestors()) + "/" + self.slug
+            self.path = _get_path(self)
             super(Folder, self).save(*args, **kwargs)
 
 
