@@ -32,3 +32,9 @@ To test::
   createdb mptt
   python project/manage.py migrate
   python project/manage.py loaddata sample
+
+You can then start the server::
+
+  python project/manage.py runserver
+
+And visit http://localhost:8000/library/ to test it out.
